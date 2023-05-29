@@ -7,13 +7,17 @@
   <title>TUP LC2 - TP Integrador - Cine</title>
   <!-- Estilos CSS -->
   <link rel="stylesheet" href="css/common.css" />
+  <link rel="stylesheet" href="css/pages/index.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+  </style>
 </head>
 
 <body>
   <header>
     <h1>
       <!--Titulo Cabecera-->
-      <span>Cartelera de Cine</span>
+      <img src="img/IconoCine.png" alt="icono cine"><span>Cartelera de Cine</span>
     </h1>
     <nav>
       <!--Menu Superior-->
@@ -30,19 +34,15 @@
     <h2>Últimas Películas en Cartelera</h2>
 
     <section id="form-movie-new">
-
-      <form>
-        <label for="titulo-pelicula">Título de la película:</label>
-        <input type="text" id="titulo-pelicula" name="titulo-pelicula">
-        <button type="submit">Agregar</button>
-
-      </form>
-
-
       <!--Seccion para agregar una palicula favorita por codigo-->
+      <form class="peliculaFavorita">
+        Agregar pelicula favorita por Codigo: <br><br><input type="text" name="nombre-pelicula">
+        <button type="submit">Agregar</button>
+      </form>
     </section>
+
     <section id="sec-messages">
-      <!--Seccion para mensajes-->
+      <!--Seccion para mensajes
       <div id="success-message">
         Pelicula agregada con éxito
       </div>
@@ -51,35 +51,121 @@
       </div>
       <div id="duplicate-message">
         La Película ingresada ya se encuentra almacenada
-      </div>
+      </div>-->
     </section>
+
 
 
     <!--Seccion para mensajes-->
     </section>
-    <section id="sec_peliculas">
+
+    <section class="seccion_peliculas" id="sec_peliculas">
+
       <!--Seccion visualizacion de peliculas-->
-      <div class="contenedorPeliculas" id="contenedorPeliculas"><img
-          src="img/cartelera.jpg" alt="cartelera">
-        <p>
-        <h3>Creed III</h3>
-        Codigo:677179
-        <br>
-        Titulo original: Creed III
-        <br>
-        Idioma original: en
-        <br>
-        Año:2023-03-01
-        <br>
-        <a href="agregar-a-favoritos">Agregar a favoritos</a>
-        </p>
+
+      <div class="contenedorPeliculas" id="contenedorPeliculas">
+        <div class="seccion_poster">
+          <img class="poster" src="img/cartelera_mariobros.jpg" alt="">
+
+          <h3>Super Mario Bros. La pelicula</h3>
+          <p>Codigo: 502356
+            <br>
+            Titulo original: The Super Mario Bros. Movie
+            <br>
+            Idioma original: en
+            <br>
+            Año:2023-04-05
+            <br>
+          </p>
+          <a class="button" href="agregar-a-favoritos">Agregar a favoritos</a>
+
+        </div>
       </div>
+
+      <div class="seccion_poster">
+        <img class="poster" src="img/shazam-2.jpg" alt="">
+
+        <h3>¡Shazam! La furia de los dioses</h3>
+
+        <p>Codigo: 594767
+          <br>
+          Titulo original: Shazzam! Fury of the Gods
+          <br>
+          Idioma original: en
+          <br>
+          Año:2023-03-15
+          <br>
+        </p>
+
+        <a class="button" href="agregar-a-favoritos">Agregar a favoritos</a>
+      </div>
+
+      <div class="seccion_poster">
+        <img class="poster" src="img/laniña.jpg" alt="">
+
+        <h3>La niña de la comunion</h3>
+
+        <p> Codigo: 1008005
+          <br>
+          Titulo original: La niña de la comunion
+          <br>
+          Idioma original: es
+          <br>
+          Año:2023-02-10
+          <br>
+        </p>
+
+        <a class="button" href="agregar-a-favoritos">Agregar a favoritos</a>
+
+
+      </div>
+
+      <div class="seccion_poster">
+        <img class="poster" src="img/gatoconbotas.jpg" alt="">
+
+        <h3>Gato con botas: El ultimo deseo</h3>
+
+        <p> Codigo: 315162
+          <br>
+          Titulo original: Puss in boots: The last wish
+          <br>
+          Idioma original: en
+          <br>
+          Año:2022-12-07
+          <br>
+        </p>
+
+        <a class="button" href="agregar-a-favoritos">Agregar a favoritos</a>
+
+      </div>
+
+
+      <div class="seccion_poster">
+        <img class="poster" src="img/cartelera.jpg" alt="cartelera">
+
+        <h3>Creed III</h3>
+
+        <p>Codigo: 677179
+          <br>
+          Titulo original: Creed III
+          <br>
+          Idioma original: en
+          <br>
+          Año:2023-03-01
+          <br>
+        </p>
+
+        <a class="button" href="agregar-a-favoritos">Agregar a favoritos</a>
+
+      </div>
+
     </section>
+
     <section id="sec_paginador_peliculas">
       <!--Seccion de Paginacion-->
       <div class="paginacion" id="paginacion">
-        <button id="btnAnterior">Anterior</button>
-        <button id="btnSiguiente">Siguiente</button>
+        <button class="btnpaginacion" id="btnAnterior">Anterior</button>
+        <button class="btnpaginacion" id="btnSiguiente">Siguiente</button>
       </div>
     </section>
 

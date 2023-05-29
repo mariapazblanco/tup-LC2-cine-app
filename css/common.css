@@ -21,6 +21,7 @@
 body {
   height: 100%;
   width: 100%;
+  background-color: #e0e0e0;
 }
 ul {
   list-style: none;
@@ -57,11 +58,18 @@ nav li a {
   font-weight: bold;
   color: var(--color-texto-blanco);
   background-color: var(--color-back-inactive);
+  background:#7f8c8d;
+  color: white;
+  border-radius: 10px 10px 0px 0px;
+  margin: 0px 1px;
 }
+
 nav li.current-page a {
   color: var(--color-theme);
   background-color: var(--color-active);
   pointer-events: none;
+  border-radius: 10px 10px 0px 0px;
+  margin: 0px 1px;
 }
 main {
   margin-top: 120px;
@@ -75,6 +83,7 @@ h1 {
   text-align: center;
   margin: 0;
   color: var(--color-theme);
+  text-shadow: 2px 2px 5px rgb(88, 87, 87);
 }
 h1 > img {
   width: 70px;
@@ -85,6 +94,7 @@ h2 {
   color: var(--color-titulos);
   margin: 16px 0;
   text-align: center;
+  text-shadow: 2px 2px 5px rgb(112, 110, 110);
 }
 h3 {
   color: var(--color-theme);
@@ -113,8 +123,8 @@ main p {
 /* Media Query: Estilos a aplicar sólo en pantallas mayores a 400px */
 @media (min-width: 400px) {
   main {
-    padding-left: 10%;
-    padding-right: 10%;
+    padding-left: 1%;
+    padding-right: 1%;
   }
   footer {
     padding-top: 20px;
