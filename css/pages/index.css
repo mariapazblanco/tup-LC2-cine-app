@@ -9,7 +9,7 @@ main .peliculaFavorita{
     margin-bottom: 10px;
  }
 
-.seccion_peliculas {
+.seccion_cartelera {
     display: grid;
     width: 100%;
     max-width: 1000px;
