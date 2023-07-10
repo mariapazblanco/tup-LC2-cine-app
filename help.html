@@ -11,6 +11,12 @@
   <script src="js/common.js" defer></script>
   <script src="js/pages/help.js" defer></script>
   <link rel="icon" href="img/cinema_popcorn.ico">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+  </script>
+  <script type="text/javascript">
+    (function () {emailjs.init("QiyNZfCyByFHXfX42");
+  })();
+  </script>
 </head>
 
 <body>
@@ -34,11 +40,12 @@
     <section id="sec_ayuda">
       <!-- Sección de texto de ayuda-->
       <p>
-        Esta app te permite consultar la cartelera de cine utilizando la API de <a href="#">The movie database API</a>
+        Esta App te permite consultar la cartelera de cine utilizando la API de <a href="https://www.themoviedb.org"
+          target="_blank">The movie database API</a>
         <br>
         <br>
-        Para poder registrar sus peliculas favoritas debera <a href="#">Agregar Favorito</a> desde la cartelera y luego
-        visualizar nuestros favoritos desde <a href="#">Mis Favoritas</a>
+        Para poder registrar sus peliculas favoritas debera <a href="index.html">Agregar Favorito</a> desde la cartelera
+        y luego visualizar nuestros favoritos desde <a href="favorities.html">Mis Favoritas</a>
         <br>
         <br>
         Si tiene alguna sugerencia o inconveniente, por favor complete el siguiente formulario y envienoslo. Lo
@@ -50,7 +57,7 @@
 
     <section id="form-cine_contacto">
       <!-- Sección donde se debe colocar el formulario de contacto-->
-      <form>
+      <form id="contact-form">
 
         <label for="nombre">Nombre:</label> <br>
         <input type="text" id="nombre" name="nombre">
@@ -65,16 +72,13 @@
         <br>
         <br>
         <button class="button" type="reset">Limpiar</button>
-        <button class="button" type="submit">Enviar</button>
+        <button type="button" class="button" onclick="sendEmail()">Enviar</button>
       </form>
     </section>
 
     <section id="sec-cine-result">
-      <div class="alert">
-        <p>Ingrese un Email válido.</p>
-      </div>
       <!-- Sección donde se debe mostrar los mensajes de error -->
-    </section>
+      </section>
   </main>
   <footer>
     <p>Desarrollado con ♥ - LC2</p>
@@ -82,3 +86,4 @@
 </body>
 
 </html>
+

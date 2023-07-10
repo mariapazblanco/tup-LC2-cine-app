@@ -174,12 +174,30 @@ main p {
   font-weight: 200;
   text-align: center;
 }
-.amarillo{
-  background-color: #ffc107;
+
+.mensaje-amarillo {
+  background-color: rgb(192, 192, 45);
+  color: white;
+  padding: 10px 10px;
+  border: 1px solid #f5c6cb; 
+  border-radius: 10px; 
+  margin: 10px;
+  text-align: center;
 }
-.rojo{
-  background-color:#dc3545;
+
+.mensaje-verde {
+  background-color: green;
+  color: white;
+  padding: 10px 10px;
+  border: 1px solid #f5c6cb; 
+  border-radius: 10px; 
+  margin: 10px;
 }
-.verde{
-  background-color:#28a745 ;
+
+.error{
+  background-color: red;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
 }

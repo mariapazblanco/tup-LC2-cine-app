@@ -1,11 +1,23 @@
-
-
 h3 {
     text-align: center;
 }
 
+.contenedorPeliculasFavoritas{
+    text-align: center;
+}
 
-.seccion-peliculas {
+.seccionPeliculas p{
+    text-align: left;
+}
+
+.codigo,
+.titulo-original,
+.idioma-original,
+.resumen {
+    text-align: left; /* Alineación izquierda para los elementos */
+}
+
+.seccionPeliculas {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     margin: 10px 100px;
@@ -13,20 +25,18 @@ h3 {
 
 }
 
-.seccion-peliculas .imagenfav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height:50%;
+.seccionCartelera {
+    display: grid;
     width: 100%;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
 }
 
-.imagenfav img {
-    max-width: 100%;
-    max-height: 100%;
-    border-radius: 25px;
-    padding-bottom: 10px;
+
+.seccionPeliculas img {
+    border-radius: 40px;
 }
+
 
 p {
     color: rgb(15, 80, 141);
@@ -34,49 +44,37 @@ p {
     font-size: small;
 }
 
-.seccion-alerta .peliculaAgregada {
-    background-color: #28a745;
-    color: white;
-    padding: 10px;
-    border: 1px solid #28a745;
-    border-radius: 10px;
-    width: 50%;
-    margin: 10px 10px;
-}
-
-.seccion-alerta .peliculaExistente {
-
-    background-color: #ffc107;
-    color: white;
-    padding: 10px;
-    border: 1px solid #ffc107;
-    border-radius: 10px;
-    width: 50%;
-    margin: 10px 10px;
-}
-
-.seccion-alerta .peliculaInexistente {
-
-    background-color: #dc3545;
-    color: white;
-    padding: 10px;
-    border: 1px solid #dc3545;
-    border-radius: 10px;
-    width: 50%;
-    margin: 10px 10px;
-}
-
-.seccion-alerta p{
+.seccion-alerta p {
     color: white;
     text-align: center;
     font-size: small;
 }
 
-.seccion-alerta{
+.seccion-alerta {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-  }
+}
+
+.remove-favorite-button {
+    background: #7f8c8d;
+    color: white;
+    display: flex;
+    font-size: 10px;
+    margin: 0px;
+    padding: 10px 0;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    text-decoration: none;
+    box-shadow: 0px 3px 0px #4b4848;
+    border-radius: 50px;
+}
+
+.remove-favorite-button:hover {
+    box-shadow: 0px 3px 0px;
+}

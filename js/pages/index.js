@@ -3,18 +3,18 @@ let currentPage = 1;
 let totalPages = 1;
 
 function displayMovies(page) {
-    const contenedorPeliculas = document.getElementById('seccion_cartelera');
-    contenedorPeliculas.innerHTML = ''; // Limpiar el contenido anterior
+    const seccionPoster = document.getElementById('seccionCartelera');
+    seccionPoster.innerHTML = ''; // Limpiar el contenido anterior
 
-    fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=popularity.desc&page=${page}`) /*el fetch hace una solicitud a la API de moviedb, lo que obtiene una lista de peliculas. El then convierte los datos en formato JSON. El metodo then maneja la respuesta de la solicitud*/
+    fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=popularity.desc&page=${page}`)
         .then(response => response.json())
         .then(data => {
             const movies = data.results;
             totalPages = data.total_pages;
 
             movies.forEach(movie => {
-                const seccionPoster = document.createElement('div');
-                seccionPoster.className = 'seccion_poster';
+                const seccionPosterElement = document.createElement('div');
+                seccionPosterElement.className = 'seccionPoster';
 
                 const img = document.createElement('img');
                 img.className = 'poster';
@@ -26,33 +26,38 @@ function displayMovies(page) {
 
                 const details = document.createElement('p');
                 details.innerHTML = `Código: ${movie.id}<br>
-                                   Título original: ${movie.original_title}<br>
-                                   Idioma original: ${movie.original_language}<br>
-                                   Año: ${movie.release_date}`;
+                             Título original: ${movie.original_title}<br>
+                             Idioma original: ${movie.original_language}<br>
+                             Año: ${movie.release_date}`;
 
                 const button = document.createElement('a');
                 button.className = 'button';
-                button.href = 'agregar-a-favoritos';
                 button.textContent = 'Agregar a favoritos';
+                button.onclick = () => agregarFavorito(movie.id);
 
-                seccionPoster.appendChild(img);
-                seccionPoster.appendChild(title);
-                seccionPoster.appendChild(details);
-                seccionPoster.appendChild(button);
-                contenedorPeliculas.appendChild(seccionPoster);
+                seccionPosterElement.appendChild(img);
+                seccionPosterElement.appendChild(title);
+                seccionPosterElement.appendChild(details);
+                seccionPosterElement.appendChild(button);
+                seccionPoster.appendChild(seccionPosterElement);
             });
         })
         .catch(error => {
+            let msj = document.getElementById("sec-messages");
+            msj.innerHTML = '<p class="rojo">¡Ocurrio un error en la comunicación con la API!</p>';
             console.error('Error:', error);
         });
 }
+
+
+
 
 function updatePagination() {
     const paginacionElement = document.getElementById('paginacion');
     paginacionElement.innerHTML = '';
 
     const btnAnterior = document.createElement('button');
-    btnAnterior.className = 'btnpaginacion';
+    btnAnterior.className = 'btnPaginacion';
     btnAnterior.id = 'btnAnterior';
     btnAnterior.textContent = 'Anterior';
     btnAnterior.addEventListener('click', () => {
@@ -65,7 +70,7 @@ function updatePagination() {
     paginacionElement.appendChild(btnAnterior);
 
     const btnSiguiente = document.createElement('button');
-    btnSiguiente.className = 'btnpaginacion';
+    btnSiguiente.className = 'btnPaginacion';
     btnSiguiente.id = 'btnSiguiente';
     btnSiguiente.textContent = 'Siguiente';
     btnSiguiente.addEventListener('click', () => {
@@ -78,70 +83,79 @@ function updatePagination() {
     paginacionElement.appendChild(btnSiguiente);
 }
 
-displayMovies(currentPage);
-updatePagination();
 
-function agregarFavorito(id) {
-    let local=[];
-    local = localStorage.getItem("Favoritos");
-    let nuevo = id;
-    let control = true;
-    if (local != null){
-        for (let i = 0; i < local.length; i++){ 
-            if(local[i] == nuevo) {
-                control = false;
-                i = local.lenght;
-            };
-        };
-        if (control){
-            let msj = document.getElementById("sec-messages");
-            localStorage.setItem("Favoritos",id);
-            msj.innerHTML='<p class="verde">Película agregada con éxito!</p>';
+
+function agregarFavorito(codigoPelicula) {
+    let favoritos = localStorage.getItem("Favoritos");
+
+    if (favoritos !== null) {
+        favoritos = JSON.parse(favoritos);
+    }
+
+    if (!Array.isArray(favoritos)) {
+        favoritos = [];
+    }
+
+    let peliculaYaAgregadaAFavoritos = false;
+
+    for (let i = 0; i < favoritos.length; i++) {
+        if (favoritos[i] == codigoPelicula) {
+            peliculaYaAgregadaAFavoritos = true;
+            break;
         }
-        else{
-            let msj = document.getElementById("sec-messages");
-            msj.innerHTML='<p class="amarillo">La película ingresada ya se encuentra almacenada</p>';
-        };
-        }
-    else{
+    }
+
+    if (peliculaYaAgregadaAFavoritos) {
         let msj = document.getElementById("sec-messages");
-        localStorage.setItem("Favoritos",id);
-        msj.innerHTML='<p class="verde">Película agregada con éxito!</p>';
+        msj.innerHTML = '<p class ="mensaje-amarillo">La película ingresada ya se encuentra almacenada</p>';
+       
+    } else {
+        favoritos.push(codigoPelicula);
+        localStorage.setItem("Favoritos", JSON.stringify(favoritos));
+        let msj = document.getElementById("sec-messages");
+        msj.innerHTML = '<p class="mensaje-verde">¡Película agregada con éxito!</p>';
+       
     }
+}
+
+const formulario = document.querySelector('.peliculaFavorita');
+const btnAgregar = formulario.querySelector('#btnAgregar');
+const inputCodigo = formulario.querySelector('input[name="nombre-pelicula"]');
+
+btnAgregar.addEventListener('click', function (event) {
+    event.preventDefault();
+    const codigoPelicula = inputCodigo.value.trim();
+
+    if (codigoPelicula !== '') {
+        validarPelicula(codigoPelicula);
     }
-
-
-
-function updatePagination() {
-const paginacionElement = document.getElementById('paginacion');
-paginacionElement.innerHTML = '';
-
-const btnAnterior = document.createElement('button');
-btnAnterior.className = 'btnpaginacion';
-btnAnterior.id = 'btnAnterior';
-btnAnterior.textContent = 'Anterior';
-btnAnterior.addEventListener('click', () => {
-if (currentPage > 1) {
-  currentPage--;
-  displayMovies(currentPage);
-  updatePagination();
-}
 });
-paginacionElement.appendChild(btnAnterior);
 
-const btnSiguiente = document.createElement('button');
-btnSiguiente.className = 'btnpaginacion';
-btnSiguiente.id = 'btnSiguiente';
-btnSiguiente.textContent = 'Siguiente';
-btnSiguiente.addEventListener('click', () => {
-if (currentPage < totalPages) {
-  currentPage++;
-  displayMovies(currentPage);
-  updatePagination();
+function validarPelicula(codigoPelicula) {
+    fetch(`https://api.themoviedb.org/3/movie/${codigoPelicula}?api_key=${apiKey}`)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('La película no existe en la API');
+            }
+        })
+        .then(data => {
+            agregarFavorito(data.id);
+        })
+        .catch(error => {
+            let msj = document.getElementById("sec-messages");
+            msj.innerHTML = '<div id="error-message"><p class="error">Error: ' + error.message + '</p></div>';
+            console.error('Error:', error);
+        });
 }
-});
-paginacionElement.appendChild(btnSiguiente);
-}
+
 
 displayMovies(currentPage);
 updatePagination();
+
+
+
+
+
+
